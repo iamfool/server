@@ -240,14 +240,14 @@ class FileInfo implements \OCP\Files\FileInfo, \ArrayAccess {
 	 * @return bool
 	 */
 	public function isReadable() {
-		return $this->checkPermissions(\OCP\Constants::PERMISSION_READ);
+		return $this->checkPermissions(\OCP\Constants::PERMISSION_READ) && $this->storage->isReadable($this->getInternalPath());
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isUpdateable() {
-		return $this->checkPermissions(\OCP\Constants::PERMISSION_UPDATE);
+		return $this->checkPermissions(\OCP\Constants::PERMISSION_UPDATE) && $this->storage->isUpdatable($this->getInternalPath());
 	}
 
 	/**
@@ -256,21 +256,21 @@ class FileInfo implements \OCP\Files\FileInfo, \ArrayAccess {
 	 * @return bool
 	 */
 	public function isCreatable() {
-		return $this->checkPermissions(\OCP\Constants::PERMISSION_CREATE);
+		return $this->checkPermissions(\OCP\Constants::PERMISSION_CREATE) && $this->storage->isCreatable($this->getInternalPath());
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isDeletable() {
-		return $this->checkPermissions(\OCP\Constants::PERMISSION_DELETE);
+		return $this->checkPermissions(\OCP\Constants::PERMISSION_DELETE) && $this->storage->isDeletable($this->getInternalPath());
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isShareable() {
-		return $this->checkPermissions(\OCP\Constants::PERMISSION_SHARE);
+		return $this->checkPermissions(\OCP\Constants::PERMISSION_SHARE) && $this->storage->isSharable($this->getInternalPath());
 	}
 
 	/**
